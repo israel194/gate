@@ -50,11 +50,11 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 md:top-8 right-0 left-0 z-50 pt-[env(safe-area-inset-top)] transition-all duration-500 ease-in-out ${
         scrolled
-          ? "bg-[#1a2744]/96 backdrop-blur-md shadow-[0_4px_24px_rgba(0,0,0,0.35)] pb-5 border-b border-white/8"
-          : "bg-transparent pb-6"
+          ? "bg-[#1a2744]/96 backdrop-blur-md shadow-[0_4px_24px_rgba(0,0,0,0.35)] pb-7 border-b border-white/8"
+          : "bg-transparent pb-8"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-6 py-2 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo — fixed width to balance the CTA on the other side */}
         <a href="#" className="flex flex-col leading-none lg:w-32">
           <span className="text-white font-bold text-2xl tracking-[0.2em] uppercase">
