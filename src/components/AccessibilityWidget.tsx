@@ -14,6 +14,8 @@ export default function AccessibilityWidget() {
   const [fontSize, setFontSize] = useState<FontSize>("normal");
   const [highContrast, setHighContrast] = useState(false);
   const [underlineLinks, setUnderlineLinks] = useState(false);
+  const [stopAnimations, setStopAnimations] = useState(false);
+  const [grayscale, setGrayscale] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
 
   // Apply font size to root element
@@ -34,6 +36,16 @@ export default function AccessibilityWidget() {
     document.documentElement.classList.toggle("underline-links", underlineLinks);
   }, [underlineLinks]);
 
+  // Stop animations (WCAG 2.3.3)
+  useEffect(() => {
+    document.documentElement.classList.toggle("stop-animations", stopAnimations);
+  }, [stopAnimations]);
+
+  // Grayscale mode
+  useEffect(() => {
+    document.documentElement.classList.toggle("grayscale-mode", grayscale);
+  }, [grayscale]);
+
   // Close panel on outside click
   useEffect(() => {
     if (!open) return;
@@ -50,6 +62,8 @@ export default function AccessibilityWidget() {
     setFontSize("normal");
     setHighContrast(false);
     setUnderlineLinks(false);
+    setStopAnimations(false);
+    setGrayscale(false);
   }
 
   if (dismissed) return null;
@@ -125,6 +139,30 @@ export default function AccessibilityWidget() {
                   <span>הדגשת קישורים</span>
                   <span className={`w-5 h-5 rounded-full border-2 flex items-center justify-center text-xs ${underlineLinks ? "border-white bg-white/20" : "border-gray-300"}`}>
                     {underlineLinks ? "✓" : ""}
+                  </span>
+                </button>
+
+                <button
+                  onClick={() => setStopAnimations((v) => !v)}
+                  className={`flex items-center justify-between px-3 py-2.5 rounded-xl border text-sm font-medium transition-all ${
+                    stopAnimations ? "bg-navy text-white border-navy" : "bg-white text-navy border-gray-200 hover:border-navy"
+                  }`}
+                >
+                  <span>עצירת אנימציות</span>
+                  <span className={`w-5 h-5 rounded-full border-2 flex items-center justify-center text-xs ${stopAnimations ? "border-white bg-white/20" : "border-gray-300"}`}>
+                    {stopAnimations ? "✓" : ""}
+                  </span>
+                </button>
+
+                <button
+                  onClick={() => setGrayscale((v) => !v)}
+                  className={`flex items-center justify-between px-3 py-2.5 rounded-xl border text-sm font-medium transition-all ${
+                    grayscale ? "bg-navy text-white border-navy" : "bg-white text-navy border-gray-200 hover:border-navy"
+                  }`}
+                >
+                  <span>גווני אפור</span>
+                  <span className={`w-5 h-5 rounded-full border-2 flex items-center justify-center text-xs ${grayscale ? "border-white bg-white/20" : "border-gray-300"}`}>
+                    {grayscale ? "✓" : ""}
                   </span>
                 </button>
               </div>

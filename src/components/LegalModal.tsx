@@ -71,6 +71,7 @@ export default function LegalModal({ type, onClose }: Props) {
           ) : (
             <>
               <Section title={a.standard}><p>{a.standardDesc}</p></Section>
+              <Section title={a.browsers}><p>{a.browsersDesc}</p></Section>
               <Section title={a.features}>
                 <ul className="space-y-2 mt-2">
                   {[a.feature1, a.feature2, a.feature3, a.feature4, a.feature5, a.feature6, a.feature7].map((f, i) => (
@@ -81,11 +82,19 @@ export default function LegalModal({ type, onClose }: Props) {
                   ))}
                 </ul>
               </Section>
+              <Section title={a.limitations}>
+                <p className="text-amber-300/80">{a.limitationsDesc}</p>
+              </Section>
+              <Section title={a.coordinator}>
+                <div className="space-y-1 mt-1">
+                  <p>{a.coordinatorName}</p>
+                  <p>{a.coordinatorRole}</p>
+                  <p>{a.coordinatorPhone}</p>
+                  <p>{a.coordinatorEmail}</p>
+                </div>
+              </Section>
               <Section title={a.contact}>
                 <p>{a.contactDesc}</p>
-                <p className="mt-2">{a.phone}</p>
-                <p>{a.email}</p>
-                <p className="mt-2 text-white/50">{a.response}</p>
               </Section>
             </>
           )}

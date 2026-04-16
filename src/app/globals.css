@@ -60,3 +60,29 @@ html {
 .floor-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+/* Accessibility modes */
+html.high-contrast {
+  filter: contrast(1.5);
+}
+
+html.grayscale-mode {
+  filter: grayscale(1);
+}
+
+html.high-contrast.grayscale-mode {
+  filter: contrast(1.5) grayscale(1);
+}
+
+html.underline-links a {
+  text-decoration: underline !important;
+  text-underline-offset: 3px;
+}
+
+html.stop-animations *,
+html.stop-animations *::before,
+html.stop-animations *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+}
