@@ -23,6 +23,8 @@ import Footer from "./Footer";
 import WhatsAppButton from "./WhatsAppButton";
 import StickyMobileCTA from "./StickyMobileCTA";
 import LanguageSwitcher from "./LanguageSwitcher";
+import AccessibilityWidget from "./AccessibilityWidget";
+import CookieBanner from "./CookieBanner";
 
 interface I18nContext {
   dict: Dictionary;
@@ -64,6 +66,8 @@ export default function LandingPage({
           <Footer />
           <WhatsAppButton />
           <StickyMobileCTA />
+          <AccessibilityWidget />
+          <CookieBanner />
         </main>
       </CurrencyProvider>
     </I18nCtx.Provider>

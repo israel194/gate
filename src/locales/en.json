@@ -70,7 +70,9 @@
     "perParking": "Per Spot + VAT",
     "lendingBank": "Lending Bank",
     "top": "Floor 40",
-    "bottom": "Floor 1"
+    "bottom": "Floor 1",
+    "fromUnit": "From a single unit",
+    "unitRange": "From ⅛ of a floor to a full floor — the choice is yours"
   },
   "plans": {
     "title": "Floor Plans & Office Layouts",
@@ -394,5 +396,11 @@
     "contact": "Contact",
     "contactDesc": "For questions regarding this Privacy Policy, contact us: office@asor-law.com",
     "date": "This policy was last updated: April 2026"
+  },
+  "cookieBanner": {
+    "text": "We use cookies to enhance your browsing experience and analyze site traffic, in accordance with applicable privacy law. Continuing to browse constitutes your consent.",
+    "accept": "Accept",
+    "decline": "Decline",
+    "learnMore": "Learn more"
   }
 }
