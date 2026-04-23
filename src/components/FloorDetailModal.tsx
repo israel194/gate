@@ -256,23 +256,33 @@ export default function FloorDetailModal({
                 {sorted.map((unit) => {
                   const price = getUnitPrice(unit, floor.pricePerSqm);
                   return (
-                    <div key={unit.id} className="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <div key={unit.id} className={`relative bg-gray-50 rounded-xl p-4 border overflow-hidden ${unit.sold ? "border-red-200 opacity-75" : "border-gray-100"}`}>
+                      {unit.sold && (
+                        <>
+                          <div className="absolute inset-0 pointer-events-none">
+                            <svg className="w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
+                              <line x1="0" y1="0" x2="100" y2="100" stroke="#ef4444" strokeWidth="1.5" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
+                            </svg>
+                          </div>
+                          <span className="absolute top-2 start-2 bg-red-100 text-red-600 text-[10px] font-bold px-2 py-0.5 rounded-full">נמכר</span>
+                        </>
+                      )}
                       <div className="flex items-center justify-between mb-3">
                         <div className="flex items-center gap-2">
-                          <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-navy/10 text-navy font-bold text-sm">{unit.model}</span>
+                          <span className={`inline-flex items-center justify-center w-8 h-8 rounded-lg font-bold text-sm ${unit.sold ? "bg-red-100 text-red-500" : "bg-navy/10 text-navy"}`}>{unit.model}</span>
                           <span className="text-gray-400 text-xs font-mono">{unit.id}</span>
                         </div>
                         <span className="text-xs text-gray-500">{dirs[unit.direction]}</span>
                       </div>
-                      <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-                        <div><span className="text-gray-400 text-xs">{t.netArea}</span><div className="font-medium">{fmt(unit.netSqm)}</div></div>
-                        <div><span className="text-gray-400 text-xs">{t.pricingArea}</span><div className="font-medium text-navy">{fmt(unit.pricingSqm)}</div></div>
+                      <div className={`grid grid-cols-2 gap-x-4 gap-y-2 text-sm ${unit.sold ? "line-through text-gray-400" : ""}`}>
+                        <div><span className="text-gray-400 text-xs no-underline">{t.netArea}</span><div className="font-medium">{fmt(unit.netSqm)}</div></div>
+                        <div><span className="text-gray-400 text-xs no-underline">{t.pricingArea}</span><div className={`font-medium ${unit.sold ? "" : "text-navy"}`}>{fmt(unit.pricingSqm)}</div></div>
                         {unit.balcony > 0 && <div><span className="text-gray-400 text-xs">{t.balcony}</span><div className="text-gray-500">{fmt(unit.balcony)}</div></div>}
                         {unit.shelter > 0 && <div><span className="text-gray-400 text-xs">{t.shelter}</span><div className="text-gray-500">{fmt(unit.shelter)}</div></div>}
                       </div>
                       <div className="mt-3 pt-3 border-t border-gray-200 text-end">
                         <span className="text-xs text-gray-400">{t.unitPrice}</span>
-                        <div className="text-lg font-bold text-gold-dark">{fmtPrice(price)}</div>
+                        <div className={`text-lg font-bold ${unit.sold ? "line-through text-gray-400" : "text-gold-dark"}`}>{fmtPrice(price)}</div>
                       </div>
                     </div>
                   );
@@ -311,33 +321,40 @@ export default function FloorDetailModal({
                       return (
                         <tr
                           key={unit.id}
-                          className={`border-b border-gray-100 ${i % 2 === 0 ? "bg-gray-50/50" : "bg-white"} hover:bg-gold/5 transition-colors`}
+                          className={`relative border-b border-gray-100 transition-colors ${
+                            unit.sold
+                              ? "bg-red-50/60"
+                              : i % 2 === 0 ? "bg-gray-50/50 hover:bg-gold/5" : "bg-white hover:bg-gold/5"
+                          }`}
                         >
                           <td className="px-2 py-2.5 text-gray-400 text-xs font-mono">
                             {unit.id}
                           </td>
                           <td className="px-2 py-2.5">
-                            <span className="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-navy/10 text-navy font-bold text-xs">
-                              {unit.model}
-                            </span>
+                            <div className="flex items-center gap-1.5">
+                              <span className={`inline-flex items-center justify-center w-7 h-7 rounded-lg font-bold text-xs ${unit.sold ? "bg-red-100 text-red-500" : "bg-navy/10 text-navy"}`}>
+                                {unit.model}
+                              </span>
+                              {unit.sold && <span className="text-[10px] font-bold text-red-500 bg-red-100 px-1.5 py-0.5 rounded-full">נמכר</span>}
+                            </div>
                           </td>
-                          <td className="px-2 py-2.5 text-gray-600 text-xs">
+                          <td className={`px-2 py-2.5 text-xs ${unit.sold ? "line-through text-gray-400" : "text-gray-600"}`}>
                             {dirs[unit.direction]}
                           </td>
-                          <td className="px-2 py-2.5 text-end font-medium">
+                          <td className={`px-2 py-2.5 text-end font-medium ${unit.sold ? "line-through text-gray-400" : ""}`}>
                             {fmt(unit.netSqm)}
                           </td>
-                          <td className="px-2 py-2.5 text-end text-gray-500">
+                          <td className={`px-2 py-2.5 text-end ${unit.sold ? "line-through text-gray-400" : "text-gray-500"}`}>
                             {unit.balcony > 0 ? fmt(unit.balcony) : "—"}
                           </td>
-                          <td className="px-2 py-2.5 text-end text-gray-500">
+                          <td className={`px-2 py-2.5 text-end ${unit.sold ? "line-through text-gray-400" : "text-gray-500"}`}>
                             {unit.shelter > 0 ? fmt(unit.shelter) : "—"}
                           </td>
-                          <td className="px-2 py-2.5 text-end font-medium text-navy">
+                          <td className={`px-2 py-2.5 text-end font-medium ${unit.sold ? "line-through text-gray-400" : "text-navy"}`}>
                             {fmt(unit.pricingSqm)}
                           </td>
-                          <td className="px-2 py-2.5 text-end font-bold text-gold-dark">
-                            {fmtPrice(price)}
+                          <td className={`px-2 py-2.5 text-end font-bold ${unit.sold ? "line-through text-gray-400" : "text-gold-dark"}`}>
+                            {unit.sold ? "—" : fmtPrice(price)}
                           </td>
                         </tr>
                       );

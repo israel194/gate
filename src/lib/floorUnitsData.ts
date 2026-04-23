@@ -6,6 +6,7 @@ export interface FloorUnit {
   balcony: number;
   shelter: number;
   direction: string;
+  sold?: boolean;
 }
 
 export interface FloorData {
@@ -79,8 +80,8 @@ const floor35Units: FloorUnit[] = [
 
 // Floor 37 — from טבלאות-שטחים-summary.md
 const floor37Units: FloorUnit[] = [
-  u("221-1", "A", 114, 156),
-  u("221-2", "B", 131, 180),
+  { ...u("221-1", "A", 114, 156), sold: true },
+  { ...u("221-2", "B", 131, 180), sold: true },
   u("222-1", "C", 152, 232, 3, 23),
   u("222-2", "D", 169, 232),
   u("223-1", "E", 114, 156),
