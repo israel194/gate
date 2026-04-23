@@ -226,7 +226,7 @@ export default function FloorDetailModal({
                   <select
                     value={filterModel}
                     onChange={(e) => setFilterModel(e.target.value)}
-                    className="text-xs border border-gray-200 rounded-lg px-2.5 py-1.5 bg-white text-navy focus:ring-1 focus:ring-gold focus:border-gold outline-none"
+                    className="text-sm border border-gray-200 rounded-lg px-3 py-2 bg-white text-navy focus:ring-1 focus:ring-gold focus:border-gold outline-none"
                   >
                     <option value="all">{t.allUnits}</option>
                     {allModels.map((m) => (
@@ -237,7 +237,7 @@ export default function FloorDetailModal({
                   <select
                     value={filterDirection}
                     onChange={(e) => setFilterDirection(e.target.value)}
-                    className="text-xs border border-gray-200 rounded-lg px-2.5 py-1.5 bg-white text-navy focus:ring-1 focus:ring-gold focus:border-gold outline-none"
+                    className="text-sm border border-gray-200 rounded-lg px-3 py-2 bg-white text-navy focus:ring-1 focus:ring-gold focus:border-gold outline-none"
                   >
                     <option value="all">{t.allDirections}</option>
                     {allDirections.map((d) => (
@@ -261,7 +261,7 @@ export default function FloorDetailModal({
                 {sorted.map((unit) => {
                   const price = getUnitPrice(unit, floor.pricePerSqm);
                   return (
-                    <div key={unit.id} className={`relative bg-gray-50 rounded-xl p-4 border overflow-hidden ${unit.sold ? "border-red-200 opacity-75" : "border-gray-100"}`}>
+                    <div key={unit.id} className={`relative bg-gray-50 rounded-xl p-5 border overflow-hidden ${unit.sold ? "border-red-200 opacity-75" : "border-gray-100"}`}>
                       {unit.sold && (
                         <>
                           <div className="absolute inset-0 pointer-events-none">
@@ -305,6 +305,7 @@ export default function FloorDetailModal({
                 </div>
               </div>
 
+              {/* Desktop: table layout */}
               {/* Desktop: table layout */}
               <div className="hidden md:block overflow-x-auto">
                 <table className="w-full text-sm border-collapse">

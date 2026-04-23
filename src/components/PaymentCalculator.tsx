@@ -64,7 +64,7 @@ export default function PaymentCalculator() {
                   <button
                     key={f.number}
                     onClick={() => setSelectedFloor(f.number)}
-                    className={`px-4 py-2.5 rounded-lg text-sm font-bold transition-all ${
+                    className={`px-5 py-3 rounded-lg text-base font-bold transition-all ${
                       selectedFloor === f.number
                         ? "bg-gold text-navy shadow-lg"
                         : "bg-white/10 text-white/70 hover:bg-white/20"
@@ -112,7 +112,7 @@ export default function PaymentCalculator() {
           </div>
 
           {/* Payment split */}
-          <div className="mt-6 grid md:grid-cols-3 gap-4">
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="bg-gold/10 border border-gold/20 rounded-xl p-4 text-center">
               <div className="text-gold text-xs font-medium mb-1">{t.atPurchase} (30%)</div>
               <div className="text-white font-bold text-xl">{fmtPrice(payment30)}</div>

@@ -64,7 +64,7 @@ export default function Features() {
             </motion.div>
           ))}
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
           {secondary.map((f, i) => (
             <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ delay: Math.min(i * 0.06, 0.3) }} className="bg-white rounded-xl p-5 text-center hover:shadow-md transition-shadow">
               <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gold/10 text-gold mb-3">{f.icon}</div>

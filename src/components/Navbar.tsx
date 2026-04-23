@@ -105,11 +105,11 @@ export default function Navbar() {
         <div className="flex items-center lg:hidden">
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="text-white p-2 -me-2 rounded-md hover:bg-white/8 transition-colors"
+            className="text-white p-2.5 -me-2 rounded-md hover:bg-white/8 transition-colors"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {mobileOpen
                 ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M6 18L18 6M6 6l12 12" />
                 : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M4 6h16M4 12h16M4 18h16" />
@@ -140,7 +140,7 @@ export default function Navbar() {
                     key={link.href}
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
-                    className={`flex items-center justify-between py-3 text-sm border-b border-white/6 transition-colors ${
+                    className={`flex items-center justify-between py-4 text-base border-b border-white/6 transition-colors ${
                       isActive ? "text-gold font-medium" : "text-white/75 hover:text-white"
                     }`}
                   >
@@ -154,7 +154,7 @@ export default function Navbar() {
               <a
                 href="#contact"
                 onClick={() => setMobileOpen(false)}
-                className="flex-1 flex items-center justify-center bg-gold text-navy font-bold text-sm py-3.5 rounded tracking-wide shadow-[0_2px_12px_rgba(201,168,76,0.3)]"
+                className="flex-1 flex items-center justify-center bg-gold text-navy font-bold text-base py-4 rounded tracking-wide shadow-[0_2px_12px_rgba(201,168,76,0.3)]"
               >
                 {t.cta}
               </a>

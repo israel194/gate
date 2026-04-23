@@ -132,8 +132,8 @@ export default function Hero() {
           {t.title1}<br /><span className="text-gold">{t.title2}</span>
         </motion.h1>
         <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="flex flex-col sm:flex-row gap-3 justify-center items-center mt-8">
-          <a href="#floors" className="bg-gold hover:bg-gold-light text-navy font-bold text-sm px-8 py-3 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02]">{t.cta}</a>
-          <a href="#quarter" className="border-2 border-white/30 hover:border-gold text-white hover:text-gold font-medium text-sm px-8 py-3 rounded-lg transition-colors duration-300">{t.ctaQuarter}</a>
+          <a href="#floors" className="bg-gold hover:bg-gold-light text-navy font-bold text-base px-8 py-4 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02]">{t.cta}</a>
+          <a href="#quarter" className="border-2 border-white/30 hover:border-gold text-white hover:text-gold font-medium text-base px-8 py-4 rounded-lg transition-colors duration-300">{t.ctaQuarter}</a>
         </motion.div>
       </section>
 

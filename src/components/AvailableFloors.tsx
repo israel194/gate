@@ -29,7 +29,7 @@ function TowerDiagram({ selectedFloor, onSelect }: { selectedFloor: number | nul
         {Array.from({ length: 40 }, (_, i) => i + 1).map((f) => { const av = available.includes(f); const sel = selectedFloor === f; return <button key={f} onClick={() => av && onSelect(f)} className={`h-4 rounded-sm transition-all duration-200 ${sel ? "bg-gold scale-x-110 shadow-lg" : av ? "bg-gold/60 hover:bg-gold cursor-pointer hover:scale-x-105" : "bg-navy/15 cursor-default"}`} disabled={!av} />; })}
       </div>
       <div className="flex md:hidden flex-row flex-wrap gap-2 justify-center">
-        {available.map((f) => { const sel = selectedFloor === f; return <button key={f} onClick={() => onSelect(f)} className={`px-4 py-2 rounded-full text-sm font-bold transition-all duration-200 ${sel ? "bg-gold text-navy shadow-lg scale-105" : "bg-gold/15 text-navy hover:bg-gold/30"}`}>{t.floor} {f}</button>; })}
+        {available.map((f) => { const sel = selectedFloor === f; return <button key={f} onClick={() => onSelect(f)} className={`px-5 py-3 rounded-full text-base font-bold transition-all duration-200 ${sel ? "bg-gold text-navy shadow-lg scale-105" : "bg-gold/15 text-navy hover:bg-gold/30"}`}>{t.floor} {f}</button>; })}
       </div>
       <div className="text-xs text-gray-400 mt-2 hidden md:block">{t.bottom}</div>
       <div className="mt-3 hidden md:flex items-center gap-4 text-xs text-gray-500">
@@ -117,26 +117,26 @@ export default function AvailableFloors() {
 
           {/* Payment split — two columns */}
           <div className="grid sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-white/10 bg-navy-light">
-            <div className="px-10 py-10 flex flex-col items-center text-center gap-3">
-              <div className="w-16 h-16 rounded-full bg-gold/10 border border-gold/25 flex items-center justify-center">
+            <div className="px-6 md:px-10 py-8 md:py-10 flex flex-col items-center text-center gap-3">
+              <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-gold/10 border border-gold/25 flex items-center justify-center">
                 <svg className="w-7 h-7 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                 </svg>
               </div>
               <div className="flex flex-col items-center">
-                <div className="text-6xl font-extrabold text-gold tracking-tight">30%</div>
+                <div className="text-5xl md:text-6xl font-extrabold text-gold tracking-tight">30%</div>
                 <div className="text-white/40 text-xs mt-1">בחתימת חוזה הרכישה</div>
               </div>
               <div className="text-white font-semibold">{t.atPurchase}</div>
             </div>
-            <div className="px-10 py-10 flex flex-col items-center text-center gap-3">
-              <div className="w-16 h-16 rounded-full bg-gold/10 border border-gold/25 flex items-center justify-center">
+            <div className="px-6 md:px-10 py-8 md:py-10 flex flex-col items-center text-center gap-3">
+              <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-gold/10 border border-gold/25 flex items-center justify-center">
                 <svg className="w-7 h-7 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
                 </svg>
               </div>
               <div className="flex flex-col items-center">
-                <div className="text-6xl font-extrabold text-gold tracking-tight">70%</div>
+                <div className="text-5xl md:text-6xl font-extrabold text-gold tracking-tight">70%</div>
                 <div className="text-white/40 text-xs mt-1">2029–2030</div>
               </div>
               <div className="text-white font-semibold">{t.atDelivery}</div>
