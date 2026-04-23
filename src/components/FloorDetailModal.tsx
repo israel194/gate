@@ -395,7 +395,7 @@ export default function FloorDetailModal({
               <div className="bg-navy/5 rounded-xl p-4 text-center">
                 <div className="text-xs text-gray-500 mb-1">{t.parkingSpots}</div>
                 <div className="text-lg font-bold text-navy">{floor.parking}</div>
-                <div className="text-xs text-gray-400">{fmtPrice(250000)} + {t.vat}</div>
+                <div className="text-xs text-gray-400">8 חניות לקומה, תמחור נפרד</div>
               </div>
               <div className="bg-navy/5 rounded-xl p-4 text-center">
                 <div className="text-xs text-gray-500 mb-1">{t.payment}</div>

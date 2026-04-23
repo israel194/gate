@@ -23,10 +23,8 @@ export default function PaymentCalculator() {
   const [parkingSpots, setParkingSpots] = useState(8);
 
   const floor = floorsData.find((f) => f.number === selectedFloor)!;
-  const parkingCost = parkingSpots * 250000;
-  const subtotal = floor.totalPrice + parkingCost;
-  const vat = Math.round(subtotal * 0.17);
-  const total = subtotal + vat;
+  const vat = Math.round(floor.totalPrice * 0.17);
+  const total = floor.totalPrice + vat;
   const payment30 = Math.round(total * 0.3);
   const payment70 = total - payment30;
   const pricePerNetSqm = Math.round(total / floor.netSqm);
@@ -101,7 +99,7 @@ export default function PaymentCalculator() {
             </div>
             <div className="flex justify-between items-center">
               <span className="text-white/60 text-sm">{t.parkingLabel} ({parkingSpots})</span>
-              <span className="text-white font-medium">{fmtPrice(parkingCost)}</span>
+              <span className="text-white/50 text-sm italic">תמחור נפרד</span>
             </div>
             <div className="flex justify-between items-center">
               <span className="text-white/60 text-sm">{t.vat} (17%)</span>
