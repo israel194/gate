@@ -141,10 +141,10 @@ export const floorsDetailData: FloorData[] = [
   },
   {
     number: 37,
-    pricePerSqm: 25000,
+    pricePerSqm: 24000,
     grossSqm: 1700,
     netSqm: 1249,
-    totalPrice: 42425000, // 1697 pricingSqm × 25,000
+    totalPrice: 40728000, // 1697 pricingSqm × 24,000
     parking: 8,
     zone: "Premium High",
     badgeKey: "panoramic",
