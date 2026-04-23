@@ -11,6 +11,12 @@ const metadataMap: Record<Locale, Metadata> = {
       "5 קומות משרדים אחרונות למכירה במגדל GATE בכניסה לירושלים. 1,550-1,700 מ״ר, חניון, תקן LEED, 32 דק׳ מתל אביב.",
     alternates: {
       canonical: `${SITE_URL}/he`,
+      languages: {
+        he: `${SITE_URL}/he`,
+        en: `${SITE_URL}/en`,
+        ar: `${SITE_URL}/ar`,
+        "x-default": `${SITE_URL}/he`,
+      },
     },
     openGraph: {
       title: "GATE ירושלים — 5 קומות משרדים אחרונות למכירה",
@@ -116,7 +122,7 @@ const metadataMap: Record<Locale, Metadata> = {
 };
 
 export async function generateStaticParams() {
-  return [{ lang: "he" }];
+  return locales.map((lang) => ({ lang }));
 }
 
 export async function generateMetadata({
