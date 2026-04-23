@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useI18n } from "./LandingPage";
+import { asset } from "@/lib/assetPath";
 
 function RotatingImage({ images, alt, interval = 2000 }: { images: string[]; alt: string; interval?: number }) {
   const [idx, setIdx] = useState(0);
@@ -50,12 +51,12 @@ export default function Location() {
 
   const alt = dict.alt;
   const destinations = [
-    { time: "5", name: t.lightRail, hook: t.lightRailHook, mode: t.byFoot, alt: alt.locationLightRail, images: ["/images/locations/light-rail-2.jpg", "/images/locations/light-rail-3.jpg"] },
-    { time: "10", name: t.knesset, hook: t.knessetHook, mode: t.byFoot, alt: alt.locationKnesset, images: ["/images/locations/knesset-1.jpg", "/images/locations/knesset-2.jpg", "/images/locations/knesset-3.jpg"] },
-    { time: "10", name: t.sacherPark, hook: t.sacherParkHook, mode: t.byFoot, alt: alt.locationSacherPark, images: ["/images/locations/sacher-park-2.jpg", "/images/locations/sacher-park-3.jpg"] },
-    { time: "15", name: t.machaneYehuda, hook: t.machaneYehudaHook, mode: t.byFoot, alt: alt.locationMachaneYehuda, images: ["/images/locations/machane-yehuda-2.jpg", "/images/locations/machane-yehuda-4.jpg", "/images/locations/machane-yehuda-6.jpg"] },
-    { time: "15", name: t.oldCity, hook: t.oldCityHook, mode: t.byRail, alt: alt.locationOldCity, images: ["/images/locations/old-city-1.jpg", "/images/locations/old-city-2.jpg", "/images/locations/old-city-3.jpg"] },
-    { time: "32", name: t.train, hook: t.trainHook, mode: t.byTrain, alt: alt.locationTrain, images: ["/images/locations/tel-aviv-1.jpg", "/images/locations/tel-aviv-2.jpg"] },
+    { time: "5", name: t.lightRail, hook: t.lightRailHook, mode: t.byFoot, alt: alt.locationLightRail, images: [asset("/images/locations/light-rail-2.jpg"), asset("/images/locations/light-rail-3.jpg")] },
+    { time: "10", name: t.knesset, hook: t.knessetHook, mode: t.byFoot, alt: alt.locationKnesset, images: [asset("/images/locations/knesset-1.jpg"), asset("/images/locations/knesset-2.jpg"), asset("/images/locations/knesset-3.jpg")] },
+    { time: "10", name: t.sacherPark, hook: t.sacherParkHook, mode: t.byFoot, alt: alt.locationSacherPark, images: [asset("/images/locations/sacher-park-2.jpg"), asset("/images/locations/sacher-park-3.jpg")] },
+    { time: "15", name: t.machaneYehuda, hook: t.machaneYehudaHook, mode: t.byFoot, alt: alt.locationMachaneYehuda, images: [asset("/images/locations/machane-yehuda-2.jpg"), asset("/images/locations/machane-yehuda-4.jpg"), asset("/images/locations/machane-yehuda-6.jpg")] },
+    { time: "15", name: t.oldCity, hook: t.oldCityHook, mode: t.byRail, alt: alt.locationOldCity, images: [asset("/images/locations/old-city-1.jpg"), asset("/images/locations/old-city-2.jpg"), asset("/images/locations/old-city-3.jpg")] },
+    { time: "32", name: t.train, hook: t.trainHook, mode: t.byTrain, alt: alt.locationTrain, images: [asset("/images/locations/tel-aviv-1.jpg"), asset("/images/locations/tel-aviv-2.jpg")] },
   ];
 
   return (

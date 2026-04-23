@@ -109,7 +109,7 @@ export default function AvailableFloors() {
             <h3 className="text-2xl font-bold text-white">{t.paymentTitle}</h3>
             <div className="flex items-center gap-4 bg-white rounded-2xl px-6 py-3 shadow-lg">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/logos/hapoalim.svg" alt="בנק הפועלים" className="h-8 w-auto" />
+              <img src="/gate/logos/hapoalim.svg" alt="בנק הפועלים" className="h-8 w-auto" />
               <div className="w-px h-7 bg-gray-200" />
               <span className="text-gray-500 text-sm font-semibold">בנק מלווה רשמי</span>
             </div>

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useI18n } from "./LandingPage";
+import { asset } from "@/lib/assetPath";
 
 export default function Features() {
   const { dict } = useI18n();
@@ -25,7 +26,7 @@ export default function Features() {
       {/* Building hero image */}
       <div className="relative w-full h-[50vh] md:h-[60vh] overflow-hidden">
         <Image
-          src="/images/Gate_v5_hi-res_0904-副本-1.jpg"
+          src={asset("/images/Gate_v5_hi-res_0904-副本-1.jpg")}
           alt="GATE Jerusalem Tower"
           fill
           sizes="100vw"

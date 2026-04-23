@@ -34,7 +34,7 @@ export default function TrustBar() {
           <div className="flex items-center gap-3 px-5 md:px-8 py-4">
             <div className="flex items-center gap-2 bg-white rounded-xl px-4 py-2 shadow-sm border border-navy/8">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/logos/hapoalim.svg" alt="בנק הפועלים" className="h-6 w-auto" />
+              <img src="/gate/logos/hapoalim.svg" alt="בנק הפועלים" className="h-6 w-auto" />
               <span className="text-xs text-gray-400 font-medium hidden md:inline">בנק מלווה</span>
             </div>
           </div>

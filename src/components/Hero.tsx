@@ -4,15 +4,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useI18n } from "./LandingPage";
+import { asset } from "@/lib/assetPath";
 
 const YOUTUBE_ID = "pkOtGPrMGlU";
 
 const HERO_IMAGES = [
-  "/images/Gate_v1_hi-res_0821.jpg",
-  "/images/Gate_v10_hi-res_0821.jpg",
-  "/images/Gate_v5_hi-res_0904-副本-1.jpg",
-  "/images/Gate_v4__hi-res_0821.jpg",
-  "/images/Gate_0115-.jpg",
+  asset("/images/Gate_v1_hi-res_0821.jpg"),
+  asset("/images/Gate_v10_hi-res_0821.jpg"),
+  asset("/images/Gate_v5_hi-res_0904-副本-1.jpg"),
+  asset("/images/Gate_v4__hi-res_0821.jpg"),
+  asset("/images/Gate_0115-.jpg"),
 ];
 
 const KEN_BURNS = [

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import Image from "next/image";
 import { useI18n } from "./LandingPage";
+import { asset } from "@/lib/assetPath";
 
 type Tab = "layout" | "models";
 
@@ -31,11 +32,11 @@ export default function FloorPlans() {
         {activeTab === "layout" && (
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
             <div className="bg-gray-light rounded-2xl p-4 md:p-8">
-              <div className="max-w-4xl mx-auto rounded-xl overflow-hidden shadow-inner bg-white"><Image src="/images/floor24-layout.png" alt={alt.floor24Layout} width={3573} height={2526} className="w-full h-auto" quality={90} /></div>
+              <div className="max-w-4xl mx-auto rounded-xl overflow-hidden shadow-inner bg-white"><Image src={asset("/images/floor24-layout.png")} alt={alt.floor24Layout} width={3573} height={2526} className="w-full h-auto" quality={90} /></div>
               <div className="mt-6 text-center">
                 <h3 className="text-lg font-bold text-navy mb-2">{t.layoutTitle}</h3>
                 <p className="text-gray-500 text-sm mb-4">{t.layoutDesc}</p>
-                <a href="/plans/floor24-layout.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-navy hover:text-gold transition-colors text-sm font-medium">
+                <a href={asset("/plans/floor24-layout.pdf")} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-navy hover:text-gold transition-colors text-sm font-medium">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
                   {t.downloadPdf}
                 </a>
@@ -58,11 +59,11 @@ export default function FloorPlans() {
               <button onClick={() => setActiveModelGroup("DEFG")} className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${activeModelGroup === "DEFG" ? "bg-gold text-navy shadow-md" : "bg-gray-light text-navy hover:bg-gray-medium"}`}>{t.modelsDEFG}</button>
             </div>
             <div className="bg-gray-light rounded-2xl p-4 md:p-8">
-              <div className="max-w-4xl mx-auto rounded-xl overflow-hidden shadow-inner bg-white"><Image key={activeModelGroup} src={activeModelGroup === "ABCH" ? "/images/floor24-models-ABCH.png" : "/images/floor24-models-DEFG.png"} alt={activeModelGroup === "ABCH" ? alt.floorModelsABCH : alt.floorModelsDEFG} width={5803} height={3351} className="w-full h-auto" quality={90} /></div>
+              <div className="max-w-4xl mx-auto rounded-xl overflow-hidden shadow-inner bg-white"><Image key={activeModelGroup} src={activeModelGroup === "ABCH" ? asset("/images/floor24-models-ABCH.png") : asset("/images/floor24-models-DEFG.png")} alt={activeModelGroup === "ABCH" ? alt.floorModelsABCH : alt.floorModelsDEFG} width={5803} height={3351} className="w-full h-auto" quality={90} /></div>
               <div className="mt-8 grid sm:grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
                 {models[activeModelGroup].map((id) => (<div key={id} className="bg-white rounded-lg p-4 text-center"><span className="text-lg font-bold text-gold">{t.model} {id}</span><p className="text-xs text-gray-500 mt-1">{modelDescs[id]}</p></div>))}
               </div>
-              <div className="mt-6 text-center"><a href={activeModelGroup === "ABCH" ? "/plans/floor24-models-ABCH.pdf" : "/plans/floor24-models-DEFG.pdf"} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-navy hover:text-gold transition-colors text-sm font-medium"><svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>{t.downloadModels}</a></div>
+              <div className="mt-6 text-center"><a href={activeModelGroup === "ABCH" ? asset("/plans/floor24-models-ABCH.pdf") : asset("/plans/floor24-models-DEFG.pdf")} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-navy hover:text-gold transition-colors text-sm font-medium"><svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>{t.downloadModels}</a></div>
             </div>
           </motion.div>
         )}

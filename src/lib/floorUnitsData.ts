@@ -100,7 +100,7 @@ export const floorsDetailData: FloorData[] = [
     parking: 8,
     zone: "Mid-High",
     badgeKey: "",
-    planPdf: "/plans/floor-21.pdf",
+    planPdf: "/gate/plans/floor-21.pdf",
     units: floor21Units,
   },
   {
@@ -112,7 +112,7 @@ export const floorsDetailData: FloorData[] = [
     parking: 8,
     zone: "Mid-High",
     badgeKey: "",
-    planPdf: "/plans/floor-22.pdf",
+    planPdf: "/gate/plans/floor-22.pdf",
     units: floor22Units,
   },
   {
@@ -124,7 +124,7 @@ export const floorsDetailData: FloorData[] = [
     parking: 8,
     zone: "Mid-High",
     badgeKey: "allElevators",
-    planPdf: "/plans/floor-24.pdf",
+    planPdf: "/gate/plans/floor-24.pdf",
     units: floor24Units,
   },
   {
@@ -136,7 +136,7 @@ export const floorsDetailData: FloorData[] = [
     parking: 8,
     zone: "Premium High",
     badgeKey: "panoramic",
-    planPdf: "/plans/floor-35.pdf",
+    planPdf: "/gate/plans/floor-35.pdf",
     units: floor35Units,
   },
   {
@@ -148,7 +148,7 @@ export const floorsDetailData: FloorData[] = [
     parking: 8,
     zone: "Premium High",
     badgeKey: "panoramic",
-    planPdf: "/plans/floor-37.pdf",
+    planPdf: "/gate/plans/floor-37.pdf",
     units: floor37Units,
   },
 ];

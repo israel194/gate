@@ -5,17 +5,18 @@ import Image from "next/image";
 import { useState, useRef } from "react";
 import { renderGoldTitle } from "@/lib/renderGoldTitle";
 import { useI18n } from "./LandingPage";
+import { asset } from "@/lib/assetPath";
 
 const imageSrcs = [
-  "/images/Gate_v10_hi-res_0821.jpg",
-  "/images/Gate_v1_hi-res_0821.jpg",
-  "/images/Gate_v4__hi-res_0821.jpg",
-  "/images/Gate_v5_hi-res_0904-副本-1.jpg",
-  "/images/Gate_0115-.jpg",
-  "/images/713f56_13fe64f9758e417d94a6b28e928e8acd~mv2.avif",
-  "/images/713f56_3529ee945be34cc18f7fc741ef12009b~mv2.avif",
-  "/images/713f56_3990337465c44833a86a47e2670d43f4~mv2.avif",
-  "/images/713f56_a2927142c2f14532b04b4f002ae71ed8~mv2.avif",
+  asset("/images/Gate_v10_hi-res_0821.jpg"),
+  asset("/images/Gate_v1_hi-res_0821.jpg"),
+  asset("/images/Gate_v4__hi-res_0821.jpg"),
+  asset("/images/Gate_v5_hi-res_0904-副本-1.jpg"),
+  asset("/images/Gate_0115-.jpg"),
+  asset("/images/713f56_13fe64f9758e417d94a6b28e928e8acd~mv2.avif"),
+  asset("/images/713f56_3529ee945be34cc18f7fc741ef12009b~mv2.avif"),
+  asset("/images/713f56_3990337465c44833a86a47e2670d43f4~mv2.avif"),
+  asset("/images/713f56_a2927142c2f14532b04b4f002ae71ed8~mv2.avif"),
 ];
 
 const altKeys = ["render1", "render2", "render3", "render4", "render5", "render6", "render7", "render8", "render9"] as const;
