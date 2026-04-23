@@ -54,7 +54,7 @@ export default function AvailableFloors() {
         <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-center text-gray-500 mb-6 md:mb-12">{t.subtitle}</motion.p>
         <div className="flex flex-col lg:flex-row gap-12 items-start">
           <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="flex flex-col items-center lg:sticky lg:top-24 w-full lg:w-auto"><TowerDiagram selectedFloor={selectedFloor} onSelect={setSelectedFloor} /></motion.div>
-          <div className="flex-1 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+          <div className="flex-1 grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 items-stretch">
             {floorsData.map((floor, i) => {
               const detail = floorsDetailData.find((d) => d.number === floor.number);
               const avail = detail ? getAvailableTotals(detail) : null;
@@ -62,7 +62,7 @@ export default function AvailableFloors() {
               const displayGross = hasSold && avail ? avail.grossSqm : floor.grossSqm;
               const displayPrice = hasSold && avail ? avail.totalPrice : floor.totalPrice;
               return (
-              <motion.div key={floor.number} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ delay: Math.min(i * 0.08, 0.4) }} onClick={() => { if (!floor.sold && window.matchMedia("(min-width: 768px)").matches) { setSelectedFloor(floor.number); } else if (!floor.sold) { setDetailFloor(floor.number); } }} className={`floor-card flex flex-col h-full bg-white rounded-2xl p-6 shadow-md border-2 text-center relative overflow-hidden ${floor.sold ? "cursor-default opacity-75" : "cursor-pointer"} ${selectedFloor === floor.number ? "border-gold" : "border-transparent"}`}>
+              <motion.div key={floor.number} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ delay: Math.min(i * 0.08, 0.4) }} onClick={() => { if (!floor.sold && window.matchMedia("(min-width: 768px)").matches) { setSelectedFloor(floor.number); } else if (!floor.sold) { setDetailFloor(floor.number); } }} className={`floor-card flex flex-col h-full bg-white rounded-2xl p-4 md:p-6 shadow-md border-2 text-center relative overflow-hidden ${floor.sold ? "cursor-default opacity-75" : "cursor-pointer"} ${selectedFloor === floor.number ? "border-gold" : "border-transparent"}`}>
 
                 {/* Sold diagonal ribbon */}
                 {floor.sold && (
@@ -107,11 +107,11 @@ export default function AvailableFloors() {
           {/* Header */}
           <div className="bg-navy px-6 md:px-10 py-8 flex flex-col items-center text-center gap-5">
             <h3 className="text-2xl font-bold text-white">{t.paymentTitle}</h3>
-            <div className="flex items-center gap-4 bg-white rounded-2xl px-6 py-3 shadow-lg">
+            <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 bg-white rounded-2xl px-5 py-3 shadow-lg">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/gate/logos/hapoalim.svg" alt="בנק הפועלים" className="h-8 w-auto" />
-              <div className="w-px h-7 bg-gray-200" />
-              <span className="text-gray-500 text-sm font-semibold">בנק מלווה רשמי</span>
+              <img src="/gate/logos/hapoalim.svg" alt="בנק הפועלים" className="h-7 w-auto" />
+              <div className="hidden sm:block w-px h-7 bg-gray-200" />
+              <span className="text-gray-500 text-xs sm:text-sm font-semibold">בנק מלווה רשמי</span>
             </div>
           </div>
 
