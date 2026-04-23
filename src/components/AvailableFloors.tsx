@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useI18n } from "./LandingPage";
 import { useCurrency } from "./CurrencyProvider";
 import FloorDetailModal from "./FloorDetailModal";
+import { floorsDetailData, getAvailableTotals } from "@/lib/floorUnitsData";
 
 const floorsData = [
   { number: 21, pricePerSqm: 21000, grossSqm: 1550, netSqm: 1131, totalPrice: 32550000, parking: 8, zone: "Mid-High", badgeKey: "", sold: false, soldNote: "" },
@@ -54,7 +55,13 @@ export default function AvailableFloors() {
         <div className="flex flex-col lg:flex-row gap-12 items-start">
           <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="flex flex-col items-center lg:sticky lg:top-24 w-full lg:w-auto"><TowerDiagram selectedFloor={selectedFloor} onSelect={setSelectedFloor} /></motion.div>
           <div className="flex-1 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
-            {floorsData.map((floor, i) => (
+            {floorsData.map((floor, i) => {
+              const detail = floorsDetailData.find((d) => d.number === floor.number);
+              const avail = detail ? getAvailableTotals(detail) : null;
+              const hasSold = avail ? detail!.units.some((u) => u.sold) : false;
+              const displayGross = hasSold && avail ? avail.grossSqm : floor.grossSqm;
+              const displayPrice = hasSold && avail ? avail.totalPrice : floor.totalPrice;
+              return (
               <motion.div key={floor.number} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ delay: Math.min(i * 0.08, 0.4) }} onClick={() => { if (!floor.sold && window.matchMedia("(min-width: 768px)").matches) { setSelectedFloor(floor.number); } else if (!floor.sold) { setDetailFloor(floor.number); } }} className={`floor-card flex flex-col h-full bg-white rounded-2xl p-6 shadow-md border-2 text-center relative overflow-hidden ${floor.sold ? "cursor-default opacity-75" : "cursor-pointer"} ${selectedFloor === floor.number ? "border-gold" : "border-transparent"}`}>
 
                 {/* Sold diagonal ribbon */}
@@ -81,17 +88,18 @@ export default function AvailableFloors() {
                   <span className={`text-xs px-2 py-1 rounded ${floor.zone === "Premium High" ? "bg-gold/20 text-gold-dark" : "bg-navy/10 text-navy"}`}>{floor.zone === "Premium High" ? t.premium : t.midHigh}</span>
                 </div>
                 <div className="bg-gold/8 border border-gold/20 rounded-xl px-4 py-3 mb-4">
-                  <div className="text-xs text-gold-dark font-semibold uppercase tracking-wide mb-1">{t.fromUnit}</div>
+                  <div className="text-xs text-gold-dark font-semibold uppercase tracking-wide mb-1">{hasSold ? "סה״כ יחידות זמינות" : t.fromUnit}</div>
                   <div className="text-2xl font-bold text-navy">{fmtPrice(floor.pricePerSqm)} <span className="text-sm font-normal text-gray-400">/ {dict.common.sqm}</span></div>
-                  <div className="text-xs text-gray-500 mt-1">{t.unitRange}</div>
+                  <div className="text-xs text-gray-500 mt-1">{hasSold ? `${fmtPrice(displayPrice)} סה״כ` : t.unitRange}</div>
                 </div>
                 <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm mb-3">
-                  <div className="text-center"><span className="text-gray-400 text-xs">{t.gross}</span><div className="font-medium">{fmt(floor.grossSqm)} {dict.common.sqm}</div></div>
+                  <div className="text-center"><span className="text-gray-400 text-xs">{t.gross}</span><div className="font-medium">{fmt(displayGross)} {dict.common.sqm}</div></div>
                   <div className="text-center"><span className="text-gray-400 text-xs">{t.parking}</span><div className="font-medium">{floor.parking} ({t.parkingExtra})</div></div>
                 </div>
                 <button onClick={(e) => { e.stopPropagation(); if (!floor.sold) setDetailFloor(floor.number); }} disabled={floor.sold} className="mt-auto block w-full text-center bg-navy hover:bg-navy-light text-white text-sm font-medium py-3 rounded-lg transition-colors disabled:opacity-40 disabled:cursor-default">{t.detailsFor} {floor.number}</button>
               </motion.div>
-            ))}
+              );
+            })}
           </div>
         </div>
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mt-14 rounded-2xl overflow-hidden shadow-2xl border border-white/10">

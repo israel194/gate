@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useCallback, useEffect, useState } from "react";
 import { useI18n } from "./LandingPage";
 import { useCurrency } from "./CurrencyProvider";
-import { getFloorData, getUnitPrice, type FloorUnit } from "@/lib/floorUnitsData";
+import { getFloorData, getUnitPrice, getAvailableTotals, type FloorUnit } from "@/lib/floorUnitsData";
 import TabuIcon from "./TabuIcon";
 
 function fmt(n: number) {
@@ -63,6 +63,9 @@ export default function FloorDetailModal({
   }, [handleKeyDown]);
 
   if (!floor) return null;
+
+  const availTotals = getAvailableTotals(floor);
+  const hasSoldUnits = floor.units.some((u) => u.sold);
 
   const dirs = directionLabels[lang] || directionLabels.en;
 
@@ -154,7 +157,8 @@ export default function FloorDetailModal({
                 {t.floorPlan} {floorNumber}
               </h2>
               <p className="text-white/70 text-sm mt-0.5">
-                {fmt(floor.grossSqm)} {dict.common.sqm} {t.gross}
+                {fmt(hasSoldUnits ? availTotals.grossSqm : floor.grossSqm)} {dict.common.sqm} {t.gross}
+                {hasSoldUnits && <span className="text-gold/80 text-xs ms-1">({availTotals.count} יחידות זמינות)</span>}
               </p>
             </div>
             <button
@@ -389,8 +393,8 @@ export default function FloorDetailModal({
                 <div className="text-lg font-bold text-navy">{fmtPrice(floor.pricePerSqm)}</div>
               </div>
               <div className="bg-navy/5 rounded-xl p-4 text-center">
-                <div className="text-xs text-gray-500 mb-1">{t.totalFloorPrice}</div>
-                <div className="text-lg font-bold text-gold-dark">{fmtPrice(floor.totalPrice)}</div>
+                <div className="text-xs text-gray-500 mb-1">{hasSoldUnits ? "מחיר יחידות זמינות" : t.totalFloorPrice}</div>
+                <div className="text-lg font-bold text-gold-dark">{fmtPrice(hasSoldUnits ? availTotals.totalPrice : floor.totalPrice)}</div>
               </div>
               <div className="bg-navy/5 rounded-xl p-4 text-center">
                 <div className="text-xs text-gray-500 mb-1">{t.parkingSpots}</div>

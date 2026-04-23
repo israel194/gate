@@ -160,3 +160,11 @@ export function getFloorData(floorNumber: number): FloorData | undefined {
 export function getUnitPrice(unit: FloorUnit, pricePerSqm: number): number {
   return unit.pricingSqm * pricePerSqm;
 }
+
+export function getAvailableTotals(floor: FloorData) {
+  const available = floor.units.filter((u) => !u.sold);
+  const netSqm = available.reduce((s, u) => s + u.netSqm, 0);
+  const grossSqm = available.reduce((s, u) => s + u.pricingSqm, 0); // pricing sqm = gross basis
+  const totalPrice = available.reduce((s, u) => s + getUnitPrice(u, floor.pricePerSqm), 0);
+  return { netSqm, grossSqm, totalPrice, count: available.length };
+}
