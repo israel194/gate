@@ -88,9 +88,9 @@ export default function AvailableFloors() {
                   <span className={`text-xs px-2 py-1 rounded ${floor.zone === "Premium High" ? "bg-gold/20 text-gold-dark" : "bg-navy/10 text-navy"}`}>{floor.zone === "Premium High" ? t.premium : t.midHigh}</span>
                 </div>
                 <div className="bg-gold/8 border border-gold/20 rounded-xl px-4 py-3 mb-4">
-                  <div className="text-xs text-gold-dark font-semibold uppercase tracking-wide mb-1">{hasSold ? "סה״כ יחידות זמינות" : t.fromUnit}</div>
+                  <div className="text-xs text-gold-dark font-semibold uppercase tracking-wide mb-1">{t.fromUnit}</div>
                   <div className="text-2xl font-bold text-navy">{fmtPrice(floor.pricePerSqm)} <span className="text-sm font-normal text-gray-400">/ {dict.common.sqm}</span></div>
-                  <div className="text-xs text-gray-500 mt-1">{hasSold ? `${fmtPrice(displayPrice)} סה״כ` : t.unitRange}</div>
+                  <div className="text-xs text-gray-500 mt-1">{t.unitRange}</div>
                 </div>
                 <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm mb-3">
                   <div className="text-center"><span className="text-gray-400 text-xs">{t.gross}</span><div className="font-medium">{fmt(displayGross)} {dict.common.sqm}</div></div>
