@@ -284,6 +284,7 @@ export default function FloorDetailModal({
                         <div><span className="text-gray-400 text-xs no-underline">{t.pricingArea}</span><div className={`font-medium ${unit.sold ? "" : "text-navy"}`}>{fmt(unit.pricingSqm)}</div></div>
                         {unit.balcony > 0 && <div><span className="text-gray-400 text-xs">{t.balcony}</span><div className="text-gray-500">{fmt(unit.balcony)}</div></div>}
                         {unit.shelter > 0 && <div><span className="text-gray-400 text-xs">{t.shelter}</span><div className="text-gray-500">{fmt(unit.shelter)}</div></div>}
+                        {!unit.sold && <div><span className="text-gray-400 text-xs">חניה</span><div className="font-medium text-navy">1</div></div>}
                       </div>
                       <div className="mt-3 pt-3 border-t border-gray-200 text-end">
                         <span className="text-xs text-gray-400">{t.unitPrice}</span>
@@ -297,9 +298,10 @@ export default function FloorDetailModal({
                 )}
                 <div className="bg-navy/5 rounded-xl p-4 font-bold text-sm">
                   <div className="flex justify-between mb-1"><span>{t.total} ({availableFiltered.length}/{floor.units.length})</span></div>
-                  <div className="grid grid-cols-2 gap-2 text-sm">
+                  <div className="grid grid-cols-3 gap-2 text-sm">
                     <div><span className="text-gray-400 text-xs font-normal">{t.netArea}</span><div>{fmt(totalNet)}</div></div>
                     <div><span className="text-gray-400 text-xs font-normal">{t.pricingArea}</span><div className="text-navy">{fmt(totalPricing)}</div></div>
+                    <div><span className="text-gray-400 text-xs font-normal">חניות</span><div className="text-navy">{availableFiltered.length}</div></div>
                   </div>
                   <div className="mt-2 text-end text-gold-dark">{fmtPrice(totalPrice)}</div>
                 </div>
@@ -317,6 +319,7 @@ export default function FloorDetailModal({
                       <ThCell k="balcony" end>{t.balcony}</ThCell>
                       <ThCell k="shelter" end>{t.shelter}</ThCell>
                       <ThCell k="pricingSqm" end>{t.pricingArea}</ThCell>
+                      <th className="px-2 py-2.5 text-end font-medium">חניה</th>
                       <ThCell k="price" end>{t.unitPrice}</ThCell>
                     </tr>
                   </thead>
@@ -358,6 +361,9 @@ export default function FloorDetailModal({
                           <td className={`px-2 py-2.5 text-end font-medium ${unit.sold ? "line-through text-gray-400" : "text-navy"}`}>
                             {fmt(unit.pricingSqm)}
                           </td>
+                          <td className={`px-2 py-2.5 text-end ${unit.sold ? "text-gray-300" : "text-navy font-medium"}`}>
+                            {unit.sold ? "—" : "1"}
+                          </td>
                           <td className={`px-2 py-2.5 text-end font-bold ${unit.sold ? "line-through text-gray-400" : "text-gold-dark"}`}>
                             {unit.sold ? "—" : fmtPrice(price)}
                           </td>
@@ -366,19 +372,20 @@ export default function FloorDetailModal({
                     })}
                     {sorted.length === 0 && (
                       <tr>
-                        <td colSpan={8} className="px-3 py-8 text-center text-gray-400 text-sm">{t.noResults}</td>
+                        <td colSpan={9} className="px-3 py-8 text-center text-gray-400 text-sm">{t.noResults}</td>
                       </tr>
                     )}
                   </tbody>
                   <tfoot>
                     <tr className="bg-navy/5 font-bold text-sm">
                       <td className="px-2 py-3" colSpan={3}>
-                        {t.total} {`(${availableFiltered.length}/${floor.units.length})`}
+                        {t.total} ({availableFiltered.length}/{floor.units.length})
                       </td>
                       <td className="px-2 py-3 text-end">{fmt(totalNet)}</td>
                       <td className="px-2 py-3 text-end text-gray-500">{totalBalcony > 0 ? fmt(totalBalcony) : "—"}</td>
                       <td className="px-2 py-3 text-end text-gray-500">{totalShelter > 0 ? fmt(totalShelter) : "—"}</td>
                       <td className="px-2 py-3 text-end text-navy">{fmt(totalPricing)}</td>
+                      <td className="px-2 py-3 text-end text-navy">{availableFiltered.length}</td>
                       <td className="px-2 py-3 text-end text-gold-dark">{fmtPrice(totalPrice)}</td>
                     </tr>
                   </tfoot>
